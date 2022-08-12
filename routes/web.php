@@ -5,3 +5,4 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarangController;
 Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/{id}', [BarangController::class, 'show'])->name('barang');
+Route::post('/{id}', [BarangController::class, 'update']);
