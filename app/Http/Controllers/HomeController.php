@@ -10,14 +10,20 @@ class HomeController extends Controller
     public function show()
     {
         $data = [];
-        $getData = Http::get(env('APP_URL').':'.env('API_PORT').'/barang');
+        $port = null;
+        if(!(str_contains(env('API_URL'), 'heroku')))
+        {
+            $port = ':'.env('API_PORT');
+        }
+        $getData = Http::get(env('API_URL').$port.'/barang');
 
         if($getData['message'] == "success")
         {
             $data = $getData['data'];
         }
         return view('home', [
-            'data' => $data
+            'data'  => $data,
+            'port'  => $port
         ]);
     }
 }

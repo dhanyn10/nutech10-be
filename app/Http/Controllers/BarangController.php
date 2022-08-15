@@ -10,13 +10,19 @@ class BarangController extends Controller
     public function show(Request $request)
     {
         $data = [];
-        $getData = Http::get(env('APP_URL').':'.env('API_PORT').'/barang'."/".$request->id);
+        $port = null;
+        if(!(str_contains(env('API_URL'), 'heroku')))
+        {
+            $port = ':'.env('API_PORT');
+        }
+        $getData = Http::get(env('API_URL').$port.'/barang'."/".$request->id);
         if($getData['message'] == "success")
         {
             $data = $getData['data'];
         }
         return view('barang', [
-            'data'  => $data
+            'data'  => $data,
+            'port'  => $port
         ]);
     }
     public function update(Request $request)
