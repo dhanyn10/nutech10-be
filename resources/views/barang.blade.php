@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="card">
                 <?php $url = env('API_URL').$port.DIRECTORY_SEPARATOR.$item['foto'] ?>
-                <x-image dir="{{$url}}" alt=""/>
+                <img src="{{str_replace("\\", "/",$url)}}" alt="">
             </div>
         </div>
         <div class="col-md-8">
