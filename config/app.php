@@ -191,7 +191,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        'DirSeparator' => App\Helpers\DirSeparator::class
     ])->toArray(),
 
 ];
